@@ -1,8 +1,8 @@
 /**
- * Title of Project
- * Author Name
+ * moving picture activty 3
+ * jerome
  * 
- * This is a template. You must fill in the title, author, 
+ * 
  * and this description to match your project!
  */
 
@@ -40,7 +40,7 @@ let circle2 = {
 
 
 /**
- * Description of setup
+ * setting the canvas
 */
 function setup() {
     createCanvas(500,500);
@@ -50,10 +50,17 @@ function setup() {
 
 
 /**
- * Description of draw()
+ * 
 */
 function draw() {
+    //evolving red background
     background(bg.red, bg.green, bg.blue);
     bg.red = bg.red + 1;
+    //circle1
+    fill(circle1.fill);
+    ellipse(circle1.x, circle1.y, circle1.size);
+    //circle2
+    fill(circle2.fill);
+    ellipse(circle2.x, circle2.y, circle2.size);
 
 }
