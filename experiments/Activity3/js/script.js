@@ -35,8 +35,8 @@ let circle2 = {
     x : 500, //set to the right
     y : 250, 
     size : 50,
-    fill : 255,
-    alpha : 200,
+    fill : 200,
+    alpha : 100,
     speed : -1
 }
 
@@ -59,6 +59,8 @@ function draw() {
     //evolving red background
     background(bg.red, bg.green, bg.blue);
     bg.red = map(circle1.size,0, 500, 0, 255);
+    bg.green = map(mouseX, 0, 500, 0, 255);
+    bg.blue = map(mouseY, 0, 500, 0, 255);
     
     //circle1
     fill(circle1.fill,[circle1.alpha]);
