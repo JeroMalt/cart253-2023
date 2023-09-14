@@ -1,9 +1,9 @@
 /**
- * Title of Project
- * Author Name
+ * i like to move it
+ * jerome maltais
  * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
+ * 
+ * this is the exercise 1, a composition of moving shapes
  */
 
 "use strict";
@@ -14,12 +14,21 @@
 function preload() {
 
 }
+let bg = { 
+    r : 0,
+    g : 0,
+    b : 0
+}
+let mouseC1 = mouseX;
+
 
 
 /**
  * Description of setup
 */
 function setup() {
+    createCanvas(900,900);
+    
 
 }
 
@@ -28,5 +37,8 @@ function setup() {
  * Description of draw()
 */
 function draw() {
+    background(bg.r, bg.g, bg.b);
+    //mapping the background color with mouse movement
+    bg.r + map(mouseC1, 0, 900, 0, 255);
 
 }
