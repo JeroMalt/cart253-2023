@@ -1,6 +1,6 @@
 /**
- * Title of Project
- * Author Name
+ * Alien activity
+ * jerome
  * 
  * This is a template. You must fill in the title, author, 
  * and this description to match your project!
@@ -20,6 +20,8 @@ function preload() {
  * Description of setup
 */
 function setup() {
+    createCanvas(640,480);
+    background(160,40,75);
 
 }
 
