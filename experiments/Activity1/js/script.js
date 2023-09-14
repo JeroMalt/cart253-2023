@@ -28,17 +28,14 @@ function setup() {
     fill(0,150,0);  //body
     ellipse(320, 480, 300, 200);
 
-    fill(0,100,0);  //neck shadow 
-    ellipse(320, 280, 200, 310);
-
-    fill(10,200,10);  //head jaw
+    fill(10,200,10);  //head
     ellipse(320, 240, 250, 360);
-    fill(10,200,10);//head forhead
+    
+    fill(0,100,0);  //head shadow
+    
+    ellipse(320, 210, 250, 360);
+    fill(10,200,10);
     ellipse(320, 200, 300, 360);
-
-    fill(50,100,50);   //eyes shaddow 
-    ellipse(260, 200, 65, 150);
-    ellipse(380, 200, 65, 150);
 
     fill(0,0,0);   //eyes 
     ellipse(260, 180, 60, 150);
@@ -47,7 +44,7 @@ function setup() {
     ellipse(310, 280, 10, 10);   // nostrils
     ellipse(330, 280, 10, 10);
 
-    stroke(0,255 , 0); //mouth
+    stroke(200, 0, 0);
     strokeWeight(10);
     rectMode(CENTER);
     rect(320, 340, 100, 20);
