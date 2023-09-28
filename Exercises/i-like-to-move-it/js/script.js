@@ -19,7 +19,7 @@ let bg = {
     g : 0,
     b : 0
 }
-let mouseC1 = mouseX;
+let mouseC1 = mouseX + mouseY;
 
 
 
@@ -39,6 +39,5 @@ function setup() {
 function draw() {
     background(bg.r, bg.g, bg.b);
     //mapping the background color with mouse movement
-    bg.r + map(mouseC1, 0, 900, 0, 255);
-
+    
 }
