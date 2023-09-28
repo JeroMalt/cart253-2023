@@ -20,7 +20,7 @@ let covid19 = { //declaring the covid19 object/variable
     size: 100,
     vx: 0,
     vy: 0,
-    speed: 500,
+    speed: 5,
     fill: {
         r: 255,
         g: 0,
@@ -31,7 +31,7 @@ let covid19 = { //declaring the covid19 object/variable
  * Description of setup
 */
 function setup() {
-    createCanva(windowWidth, windowHeight);
+    createCanvas(windowWidth, windowHeight);
     covid19.y = random(0, height);
     covid19.vx = covid19.speed; 
 
@@ -44,11 +44,16 @@ function setup() {
 function draw() {
     background(0);
     
-    covid19.x = covid19.x + covid19.vx;
+    covid19.x = covid19.x + covid19.vx;    //creating the movement for the cicle
     covid19.y = covid19.y + covid19.vy;
 
-    fill(covid19.fill.r, covid19.fill.g, covid19.fill.g);
+    if (covid19.x > width){
+        covid19.x = 0;
+        covid19.y = random(0, height);
+
+    }
+    fill(covid19.fill.r, covid19.fill.g, covid19.fill.g); //color of the cricle
  
-    circle(covid19.x, covid19.y, covid19.size);
+    circle(covid19.x, covid19.y, covid19.size); //circle parameter 
     
 }
