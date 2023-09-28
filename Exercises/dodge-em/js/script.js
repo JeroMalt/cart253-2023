@@ -109,6 +109,8 @@ function draw() {
     fill(user.fill);
     ellipse(user.x, user.y, user.size);
 
+    
+//make the user loop in the space of the screen
     if(user.x > width){
         user.x = 0;
     }
