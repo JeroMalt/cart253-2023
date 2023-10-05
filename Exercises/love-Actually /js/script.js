@@ -1,9 +1,9 @@
 /**
- * Space Exploration Simulator
- * Jerome Maltais 
+ * Title of Project
+ * Author Name
  * 
- * A simulator where you need to explore the planet of a small solar system 
- * 
+ * This is a template. You must fill in the title, author, 
+ * and this description to match your project!
  */
 
 "use strict";
