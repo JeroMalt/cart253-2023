@@ -28,6 +28,7 @@ let circle2 = {
     vy : 0, 
     speed : 3
 };
+let state = 'title'; //can be title, love, sadness blablabla 
 
 function setup() {
     createCanvas(500,500);
@@ -38,7 +39,7 @@ function setup() {
 function setupCircles() {
     
     //position circle separated form eachother 
-    circle1.x = width / 2;
+    circle1.x = width / 3;
     circle2.x = 2 * width / 3;
     
     //start circle moving in random direction
@@ -51,15 +52,60 @@ function setupCircles() {
 
 function draw() {
     background(0);
+    
 
+    if (state === 'title') {
+        title();
 
+    }
+    else if (state === 'simulation'){
+    simulation();
+
+}
+    else if (state === 'love'){
+        love();
+
+}
+    else if (state === 'sad'){
+        sadness();
+
+}
+
+}
+function title() {
+    push();
+    textSize(64);
+    fill(200,100,100);
+    textAlign(CENTER,CENTER);
+    text('love?', width/2, height/2);
+    pop();
+}
+
+function simulation() {
    move();
    checkOffscreen();
    checkOverlap();
    display();
-
-
 }
+function love(){
+    push();
+    textSize(64);
+    fill(200,0,0);
+    textAlign(CENTER,CENTER);
+    text('love!', width/2, height/2);
+    pop();
+    
+}
+function sadness(){
+    push();
+    textSize(64);
+    fill(70,70,225);
+    textAlign(CENTER,CENTER);
+    text('sadness...', width/2, height/2);
+    pop();
+    
+}
+
 function move() {
      // move the circle
      circle1.x = circle1.x + circle1.vx; 
@@ -73,7 +119,7 @@ function checkOffscreen() {
     //check if the circle have gone off screen 
 
     if (circle1.x < 0 || circle1.x > width || circle1.y < 0 || circle1.y > height || circle2.x < 0 || circle2.x > width || circle2.y < 0 || circle2.y > height) {
-        //sad ending 
+        state = 'sad';
     }
 
 
@@ -83,7 +129,7 @@ function checkOverlap() {
     //check if circle overlap 
     let d = dist(circle1.x,circle1.y,circle2.x,circle2.y);
     if (d < circle1.size/2 + circle2.size/2){
-        //love endind 
+        state = 'love';
     }
 
 }
@@ -92,4 +138,9 @@ function display() {
     //display the circles
     ellipse(circle1.x, circle1.y, circle1.size);
     ellipse(circle2.x, circle2.y, circle2.size);
+}
+function mousePressed(){
+    if (state === 'title'){
+        state = 'simulation';
+    }
 }
