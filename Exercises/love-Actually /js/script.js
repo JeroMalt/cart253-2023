@@ -8,13 +8,17 @@
 "use strict";
 
 
+let img
+let img2
 function preload() {
+    img = loadImage('assets/images/flash.png');  //bomb image
+    img2 = loadImage('assets/images/port.png');  //explosion image
 
 }
 
 let circle1 = {
-    x : undefined,
-    y : 250,
+    x : 0,
+    y : 0,
     size : 100,
     vx : 0,
     vy : 0, 
@@ -23,7 +27,7 @@ let circle1 = {
 let circle2 = {
     x : undefined,
     y : 250,
-    size : 100,
+    size : 50,
     vx : 0,
     vy : 0, 
     speed : 3
@@ -39,13 +43,13 @@ function setup() {
 function setupCircles() {
     
     //position circle separated form eachother 
-    circle1.x = width / 3;
+    //circle1.x = width / 3;
     circle2.x = 2 * width / 3;
     
     //start circle moving in random direction
-    circle1.vx = random(-circle1.speed, circle1.speed);
+    //circle1.vx = random(-circle1.speed, circle1.speed);
     circle2.vx = random(-circle2.speed, circle2.speed);
-    circle1.vy = random(-circle1.speed, circle1.speed);
+    //circle1.vy = random(-circle1.speed, circle1.speed);
     circle2.vy = random(-circle2.speed, circle2.speed);
 
 }
@@ -70,14 +74,17 @@ function draw() {
         sadness();
 
 }
+    else if (state === 'drop'){
+        dropedIt();
+    }
 
 }
 function title() {
     push();
-    textSize(64);
+    textSize(40);
     fill(200,100,100);
     textAlign(CENTER,CENTER);
-    text('love?', width/2, height/2);
+    text('connect your flash drive', width/2, height/2);
     pop();
 }
 
@@ -89,27 +96,36 @@ function simulation() {
 }
 function love(){
     push();
-    textSize(64);
+    textSize(35);
     fill(200,0,0);
     textAlign(CENTER,CENTER);
-    text('love!', width/2, height/2);
+    text(' your flash drive is connected', width/2, height/2);
     pop();
     
 }
 function sadness(){
     push();
-    textSize(64);
+    textSize(40);
     fill(70,70,225);
     textAlign(CENTER,CENTER);
-    text('sadness...', width/2, height/2);
+    text('no data found...', width/2, height/2);
+    pop();
+    
+}
+function dropedIt(){
+    push();
+    textSize(40);
+    fill(255,200,0);
+    textAlign(CENTER,CENTER);
+    text('oh you droped it', width/2, height/2);
     pop();
     
 }
 
 function move() {
      // move the circle
-     circle1.x = circle1.x + circle1.vx; 
-     circle1.y = circle1.y + circle1.vy;
+     //circle1.x = circle1.x + circle1.vx; 
+     //circle1.y = circle1.y + circle1.vy;
  
      circle2.x = circle2.x + circle2.vx; 
      circle2.y = circle2.y + circle2.vy;
@@ -127,8 +143,8 @@ function checkOffscreen() {
 
 function checkOverlap() {
     //check if circle overlap 
-    let d = dist(circle1.x,circle1.y,circle2.x,circle2.y);
-    if (d < circle1.size/2 + circle2.size/2){
+    let d = dist(mouseX,mouseY,circle2.x,circle2.y);
+    if (d < circle1.size/3 + circle2.size/3){
         state = 'love';
     }
 
@@ -136,11 +152,16 @@ function checkOverlap() {
 
 function display() { 
     //display the circles
-    ellipse(circle1.x, circle1.y, circle1.size);
-    ellipse(circle2.x, circle2.y, circle2.size);
+    imageMode(CENTER,CENTER);
+    image(img, mouseX, mouseY, circle1.size,circle1.size);
+    image(img2, circle2.x, circle2.y, circle2.size,circle2.size);
+    //ellipse(circle2.x, circle2.y, circle2.size);
 }
 function mousePressed(){
     if (state === 'title'){
         state = 'simulation';
+    }
+    else if(state ==='simulation'){
+        state = 'drop';
     }
 }
