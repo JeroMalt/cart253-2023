@@ -8,10 +8,42 @@
 
 "use strict";
 
-/**
- * Description of preload
-*/
+
 function preload() {
+    let sun = {
+        x : 0,
+        y : 0,
+        size : 100,
+        vx : 0,
+        vy : 0, 
+        speed : 0
+    };
+    let planet1 = {
+        x : 0,
+        y : 0,
+        size : 100,
+        vx : 0,
+        vy : 0, 
+        speed : 0
+    };
+    let planet2 = {
+        x : 0,
+        y : 0,
+        size : 100,
+        vx : 0,
+        vy : 0, 
+        speed : 0
+    };
+    let planet3 = {
+        x : 0,
+        y : 0,
+        size : 100,
+        vx : 0,
+        vy : 0, 
+        speed : 0
+    };
+    
+    let state = 'title';
 
 }
 
