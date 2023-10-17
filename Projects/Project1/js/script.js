@@ -110,18 +110,20 @@ function title() {
 }
 function exploration(){
   ellipse(mouseX,mouseY,50,50)
-push();
+
+  push();
   translate (width/2,height/2);
   rectMode (CENTER);
   fill(255,165,50);
   rotate (radians (deg));
-  rect(0,0,70,70);
+  rect(sun.x,sun.y,70,70);
   pop();
   
 
  deg+=2;
 
  planetuno();
+ checkOverlap();
 
 
 }
@@ -147,6 +149,15 @@ function planetuno(){ //function take makes the planets rotate around the sun
   planet1.angle = planet1.angle + planet1.speed;
   planet2.angle = planet2.angle + planet2.speed;
   planet3.angle = planet3.angle + planet3.speed;
+}
+
+function checkOverlap() {
+    //check if the flshdrive and the port overlap (connect)
+    let d = dist(mouseX,mouseY,sun.x,sun.y);
+    if (d < circle1.size/3 + circle2.size/3){
+        state = 'love';
+    }
+
 }
 
 function mousePressed(){
