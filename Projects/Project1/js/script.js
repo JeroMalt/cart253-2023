@@ -6,7 +6,7 @@
  * created using exemple from the love exercise and from p5js webstie
  * https://editor.p5js.org/LindseyPiscitell/sketches/SJgoswgp spinning movement
  * https://editor.p5js.org/kjhollen/sketches/ryZBahkKx cicurlar motion 
- * 
+ *  ENJOY!
  */
 
 "use strict";
