@@ -48,26 +48,29 @@ let sun = {
         vy : 0, 
         speed : 0
     };
-let planet1 = {
+var planet1 = {
        size : 128,
-       y : 0, 
+       centery : 500, 
+       centerx : 500,
        radius : 150,
-       angle : 5,
-       speed : 0.05
+       angle : 0,
+       speed : 0.02
     };
-let planet2 = {
+var planet2 = {
         size : 128,
-        y : 0, 
+        centery : 500, 
+        centerx : 500,
         radius : 250,
-        angle : 2,
-        speed : 0.02
+        angle : 0,
+        speed : 0.009
      };
 let planet3 = {
         size : 128,
-        y : 0, 
+        centerx : 500,
+        centery : 500, 
         radius : 400,
-        angle : 7,
-        speed : 0.009
+        angle : 0,
+        speed : 0.0009
      };     
 
     
@@ -80,11 +83,12 @@ let lookRight = 270;
 // the center of rotation for the planets:
 let centerX = 500;
 let centerY = 500;
-
-
-
-
-
+var plan1X = 0;
+var plan1Y = 0;
+var plan2X = 0;
+var plan2Y = 0;
+var plan3X = 0;
+var plan3Y = 0;
 
 function setup() {
 
@@ -122,6 +126,9 @@ function draw() {
             //sun event 
             icarus();
         }
+        else if (state === 'dead'){
+            
+        }
 
 }
 
@@ -156,10 +163,7 @@ function exploration(){
   shipMovement();
   sunrotation();
   planetuno();
-  
-  //setVolume(0.1);
-  //spaceSound.play();
- checkOverlap();
+  checkOverlap();
 
 
 }
@@ -215,7 +219,7 @@ function sunrotation(){ //display and rotation of the sun
   imageMode (CENTER);
   rotate (radians (deg));
   image(sunImg, sun.x, sun.y, sun.size,sun.size);
- // ellipse(sun.x,sun.y,sun.size);
+ 
   pop();
   
 
@@ -223,37 +227,47 @@ function sunrotation(){ //display and rotation of the sun
 
 }
 function planetuno(){ //function displays and makes the planets rotate around the sun
-  push();
-  translate(centerX, centerY);
-  rotate (planet1.angle);
-  image(plan1Img, planet1.radius, planet1.y, planet1.size,planet1.size);
-  //rect(planet1.radius, 0, 50, 50);
-  pop();
-
-  push();
-  translate(centerX, centerY);
-  rotate (planet2.angle);
-  image(plan2Img, planet2.radius, planet2.y, planet2.size,planet2.size);
-  //rect(planet2.radius, 0, 50, 50);
-  pop(); 
-
-  push();
-  translate(centerX, centerY);
-  rotate (planet3.angle);
-  image(plan3Img, planet3.radius, planet3.y, planet3.size,planet3.size);
-  //rect(planet3.radius, 0, 50, 50);
-  pop(); 
-
+ 
+  
+  
+  plan1X = planet1.centerx + planet1.radius * cos(planet1.angle);
+  plan1Y = planet1.centery + planet1.radius * sin(planet1.angle);
+  image(plan1Img, plan1X, plan1Y, planet1.size,planet1.size);
   planet1.angle = planet1.angle + planet1.speed;
+  
+  plan2X = planet2.centerx + planet2.radius * cos(planet2.angle);
+  plan2Y = planet2.centery + planet2.radius * sin(planet2.angle);
+  image(plan2Img, plan2X, plan2Y, planet2.size,planet2.size);
   planet2.angle = planet2.angle + planet2.speed;
+
+  plan3X = planet3.centerx + planet3.radius * cos(planet3.angle);
+  plan3Y = planet3.centery + planet3.radius * sin(planet3.angle);
+  image(plan3Img, plan3X, plan3Y, planet3.size,planet3.size);
   planet3.angle = planet3.angle + planet3.speed;
+
 }
 
 function checkOverlap() {
     //check if the flshdrive and the port overlap (connect)
+    //rotatePlan1x = cos(planet1.angle)
+    //rotatePlan1y = centerY / planet1.angle;
+
     let d = dist(ship.x,ship.y,500,500);
     if (d < ship.size/2 + sun.size/4){
         state = 'secret';
+    }
+    
+    let d1 = dist(ship.x,ship.y,plan1X,plan1Y);
+    if (d1 < ship.size/3 + planet1.size/3){
+        state = 'planet1';
+    }
+    let d2 = dist(ship.x,ship.y,plan2X,plan2Y);
+    if (d2 < ship.size/2 + planet2.size/2){
+        state = 'planet2';
+    }
+    let d3 = dist(ship.x,ship.y,plan3X,plan3Y);
+    if (d3 < ship.size/2 + planet3.size/2){
+        state = 'planet3';
     }
 
 }
