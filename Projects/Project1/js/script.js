@@ -20,6 +20,10 @@ let shipLeftImg
 let shipRightImg
 let titleImg
 let secretEnding
+let event1Img
+let event2Img
+let event3Img
+
 
 function preload() {
     sunImg = loadImage('assets/images/sun.png');
@@ -32,6 +36,10 @@ function preload() {
     shipRightImg = loadImage('assets/images/shipRight.png');
     titleImg = loadImage('assets/images/title.png');
     secretEnding = loadImage('assets/images/secret.png');
+    event1Img = loadImage('assets/images/event1.png');
+    event2Img = loadImage('assets/images/event2.png');
+    event3Img = loadImage('assets/images/event3.png');
+
 }
 let ship = {
     x : 100,
@@ -112,22 +120,22 @@ function draw() {
     
     }
         else if (state === 'planet1'){
-            //event1
+            event1();
     
     }
         else if (state === 'planet2'){
-            //event2
+            event2();
     
     }
         else if (state === 'planet3'){
-            //event3
+            event3();
     }
         else if (state === 'secret'){
             //sun event 
             icarus();
         }
         else if (state === 'dead'){
-            
+
         }
 
 }
@@ -158,6 +166,18 @@ function icarus() {
     imageMode(CENTER);
     image(secretEnding, 500,500,1000,1000);
     } 
+function event1() {
+    image(event1Img, 500,500,1000,1000);
+
+}
+function event2() {
+    image(event2Img, 500,500,1000,1000);
+    
+}
+function event3() {
+    image(event3Img, 500,500,1000,1000);
+    
+}
 function exploration(){
   
   shipMovement();
