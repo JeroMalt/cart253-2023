@@ -108,57 +108,62 @@ function setup() {
 
 function draw() {
     background(0);
+    mainframe();
     
-    // the if statement that controls what scene are we in 
-        if (state === 'title') {
-            title();
     
-        }
-        else if (state === 'simulation'){
-        //main screen
-        exploration();
-        if(plan1Explo + plan2Explo + plan3Explo === 3) {
-
-            state = 'end';
-        }
-    
-    }
-        else if (state === 'planet1'){
-            event1();
-    
-    }
-        else if (state === 'planet2'){
-            event2();
-    
-    }
-        else if (state === 'planet3'){
-            event3();
-    }
-        else if (state === 'secret'){
-            //sun event 
-            icarus();
-        }
-        else if (state === 'dead'){
-        
-            death();
-        }
-        else if (state === 'end'){
-            push();
-            textSize(100);
-            fill(255);
-            textAlign(CENTER);
-            text('THE END', 500, 500);
-            pop();
-            push();
-                textSize(25);
-                fill(255);
-                textAlign(CENTER);
-                text('You have done it, you are a true space explorer!', 500, 600);
-                pop();
-        }
 
 }
+//function that determines in what state(scene) the users is in
+function mainframe(){
+    // the if statement that controls what scene are we in 
+    if (state === 'title') {
+        title();
 
+    }
+    else if (state === 'simulation'){
+    //main screen
+    exploration();
+    if(plan1Explo + plan2Explo + plan3Explo === 3) {
+
+        state = 'end';
+    }
+
+}
+    else if (state === 'planet1'){
+        event1();
+
+}
+    else if (state === 'planet2'){
+        event2();
+
+}
+    else if (state === 'planet3'){
+        event3();
+}
+    else if (state === 'secret'){
+        //sun event 
+        icarus();
+    }
+    else if (state === 'dead'){
+    
+        death();
+    }
+    else if (state === 'end'){
+        push();
+        textSize(100);
+        fill(255);
+        textAlign(CENTER);
+        text('THE END', 500, 500);
+        pop();
+        push();
+            textSize(25);
+            fill(255);
+            textAlign(CENTER);
+            text('You have done it, you are a true space explorer!', 500, 600);
+            pop();
+    }
+
+}
 //title screen
 function title() {
 
