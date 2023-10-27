@@ -17,7 +17,7 @@ let circle = {
     y: 0,
     size: 50,
     trail: [], // Note that we are creating an EMPTY TRAIL ARRAY as a PROPERTY of the circle
-    wormSize : 20
+    wormSize : 15
   }
 let state = 'title'; 
 let school = [];
@@ -80,6 +80,18 @@ function simulation(){
 }
 function title(){
     background(0);
+    push();
+    textSize(50);
+    textAlign(CENTER);
+    fill(255);
+    text('EATER WORM', width/2, height/3);
+    pop();
+    push();
+    textSize(15);
+    textAlign(CENTER);
+    fill(255);
+    text('you have 30 sec to eat all the apples', width/2, height/2);
+    pop();
 
 }
 function end1(){
@@ -87,12 +99,24 @@ function end1(){
     textSize(50);
     textAlign(CENTER);
     fill(255);
-    text('LOSER!', width/2, height/3);
+    text('LOSER!', width/2, height/2);
     pop();
     
 
 }
 function end2(){
+    push();
+    textSize(20);
+    textAlign(CENTER);
+    fill(255);
+    text('you are a winner!', width/2, height/3);
+    pop();
+    push();
+    textSize(50);
+    textAlign(CENTER);
+    fill(255);
+    text('Plus your belly is full.', width/2, height/2);
+    pop();
 
 }
 
@@ -102,7 +126,8 @@ function worm(){
         // Get the element at the index indicated by i (0, then 1, then 2, etc.)
         let element = circle.trail[i];
         // Draw an ellipse the same size as the circle at that position
-        fill(255);
+        noStroke();
+        fill(255,192,203);
         ellipse(element.x, element.y, circle.size);
       }
     
