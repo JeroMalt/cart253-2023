@@ -21,7 +21,8 @@ let circle = {
   }
 let state = 'title'; 
 let school = [];
-let schoolSize = 6;
+let schoolSize = 10;
+let appleEaten = 0;
 
 
 function setup() {
@@ -42,7 +43,7 @@ function createFish(x, y) {
         size: 50,
         vx: 0,
         vy: 0,
-        speed: 2
+        speed: 6
     };
     return fish;
 }
@@ -74,10 +75,17 @@ function simulation(){
     for(let i = 0; i < school.length; i ++) {
         moveFish(school[i]);
         displayFish(school[i]);
+        checkDistance(school[i]);
       }
       timeDisplay();
       worm();
-}
+      if (appleEaten === 5){
+        state = 'end2';
+      }
+      
+     
+      }
+
 function title(){
     background(0);
     push();
@@ -184,10 +192,19 @@ function moveFish(fish){
 
 function displayFish(fish) {
     push();
-    fill(200,100,100);
+    fill(255,0,0);
     noStroke();
     ellipse(fish.x, fish.y, fish.size);
     pop();
+}
+function checkDistance(fish){
+    let d = dist(mouseX, mouseY, fish.x, fish.y);
+  if (d < fish.size / 2 + circle.size / 2) {
+    text('fuck', width / 2, height /2);
+    school.pop(); 
+   
+     
+  }
 }
 
 function mousePressed() {
