@@ -1,4 +1,4 @@
-class Ball {
+class Greenball {
 
 constructor(x,y) { 
     this.x = x;
@@ -29,9 +29,6 @@ move() {
     if (this.y - this.size/2 > height) {
         this.active = false;
     }
-    if (this.y - this.size/2 > width){
-        this.right = this.right + 1; 
-    }
 }
 
 bounce(paddle) {
@@ -51,7 +48,7 @@ bounce(paddle) {
 }
 display(){
     push();
-    fill(255,50,50);
+    fill(50,255,50);
     stroke(0);
     ellipse(this.x,this.y,this.size);
     pop();
