@@ -1,9 +1,8 @@
 /**
- * Title of Project
- * Author Name
+ * juggling balls 
+ * jerome Maltais
  * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
+ * 
  */
 
 "use strict";
@@ -23,9 +22,9 @@ let numBalls = 1;
 function setup() {
     createCanvas(windowWidth,windowHeight);
     frameRate(30);
-
+//create the paddle
     paddle = new Paddle(300,20);
-
+//creates the balls
     for (let i = 0; i < numBalls; i ++){
         let x = random(0,width);
         let y = random(-400,-100);
@@ -53,7 +52,7 @@ function draw() {
    
 
 }
-
+//function to switch between states 
 function mainFrame(){
     if (state === 'title') {
         title();
@@ -69,13 +68,14 @@ function mainFrame(){
         end2();
     }
 } 
+//main state of simulation 
 function simulation(){
     paddle.move();
     paddle.display();
     timer();
     timeDisplay();
    
-
+//for loop that process only the active balls
     for (let i =0; i < balls.length; i++) {
         let ball = balls[i];
         if (ball.active){
@@ -87,6 +87,7 @@ function simulation(){
         }
         
     }
+    //
     for (let i =0; i < greenBalls.length; i++) {
         let greenBall = greenBalls[i];
         if (greenBall.active){
@@ -98,6 +99,7 @@ function simulation(){
         }
         
     }
+    //if the user have pull out 5 of each color balls at the same time they win
     if (balls.length === 5 && greenBalls.length === 5) {
         state = 'end1';
     }
@@ -107,7 +109,7 @@ function simulation(){
 
 
 
-
+//tittle screen
 function title(){
     background(0);
     push();
@@ -124,6 +126,7 @@ function title(){
     pop();
 
 }
+//funstion that displays the winner ending 
 function end1(){
     push();
     textSize(50);
@@ -134,6 +137,7 @@ function end1(){
     
 
 }
+//function that displays the loser ending 
 function end2(){
     push();
     textSize(20);
@@ -149,14 +153,15 @@ function end2(){
     pop();
 
 } 
-
+//function that caculates the time left using frame count
+//it is not the best way to do it because the frame count starts at the very start
 function timer(){
     if (frameCount >= 1800) {
         state = 'end2';
 
     }
 }
-
+//function that display the time left
 function timeDisplay(){
     let countDownRaw = map(frameCount,0 , 1800, 60, 0);
     let countDownCooked = round(countDownRaw, 1);
@@ -167,7 +172,7 @@ function timeDisplay(){
     text(countDownCooked, width/2, height/6);
     pop(); 
 }
-
+//function to add new balls
     function keyTyped() {
     if (state === 'simulation'){
         if (key === 'r'){
@@ -188,7 +193,7 @@ function timeDisplay(){
 }
 
 
-
+//function to skip the tittle page
 function keyPressed(){
     if (state === 'title'){
         state = 'simulation';
