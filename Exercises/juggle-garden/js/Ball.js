@@ -29,9 +29,7 @@ move() {
     if (this.y - this.size/2 > height) {
         this.active = false;
     }
-    if (this.y - this.size/2 > width){
-        this.right = this.right + 1; 
-    }
+    
 }
 
 bounce(paddle) {
