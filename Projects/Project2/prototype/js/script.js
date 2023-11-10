@@ -1,9 +1,10 @@
 /**
- * Title of Project
- * Author Name
+ * prototype of interactive mirror 
+ * jerome maltais 
  * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
+ * created using the motion Example on the p5js
+ * https://p5js.org/examples/dom-video-pixels.html 
+ * https://p5js.org/examples/dom-video-pixels.html 
  */
 
 "use strict";
@@ -16,11 +17,14 @@ function preload() {
 }
 
 
-/**
- * Description of setup
-*/
+let capture
 function setup() {
-
+  createCanvas(1920, 1080);
+  capture = createCapture(VIDEO);
+  capture.size(1920, 1080);
+  capture.hide();
+  noStroke();
+  fill(0);
 }
 
 
@@ -28,5 +32,21 @@ function setup() {
  * Description of draw()
 */
 function draw() {
+    background(255);
+  capture.loadPixels();
+  const stepSize = round(constrain(mouseX/64, 6, 600));
+  for (let y = 0; y < height; y += stepSize) {
+    for (let x = 0; x < width; x += stepSize) {
+      const i = y * width + x;
+      const darkness = (255 - capture.pixels[i * 4]) / 255;
+      const radius = stepSize * darkness;
+      const radius2 = stepSize / darkness;
+      let c1 = random(0,255)
+      let c2 = random(0,100)
+      let c3 = random(0,50)
+      fill(c1,c2,c3);
+      ellipse(x, y, radius, radius2);
+    }
+  }
 
 }
