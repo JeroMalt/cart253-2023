@@ -41,8 +41,8 @@ function draw() {
       const darkness = (255 - capture.pixels[i * 4]) / 255;
       const radius = stepSize * darkness;
       const radius2 = stepSize / darkness;
-      let c1 = random(0,255)
-      let c2 = random(0,100)
+      let c1 = random(200,255)
+      let c2 = random(50,100)
       let c3 = random(0,50)
       fill(c1,c2,c3);
       ellipse(x, y, radius, radius2);

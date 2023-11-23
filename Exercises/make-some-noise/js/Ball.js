@@ -16,7 +16,7 @@ class Ball {
         this.oscillator = new p5.Oscillator();
         this.nearFreq = 220;
         this.farFreq = 440;
-        this.oscillator.amp(0.1);
+        this.oscillator.amp(0.025);
         this.oscillator.start();
 
         //synth
