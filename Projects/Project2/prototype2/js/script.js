@@ -63,14 +63,6 @@ function draw() {
                     continue;
                 }
 
-                
-                
-                
-
-                // let roundedX = round(zone.pos.x);
-                // let roundedY = round(zone.pos.y);
-                // let roundedMag = round(zone.mag);
-                // ellipse(roundedX, roundedY, roundedMag);
 
                 //console.log(roundedX)
                 //ellipse(ballx, height/2, 50);
@@ -85,16 +77,12 @@ function draw() {
                 // line(zone.mag,0, zone.mag-5,5);
                 // pop();
                 //background(0);
-                ellipse()
+               
 
             }
         }
         previousPixels = copyImage(video.pixels, previousPixels);
     }
-                let roundedX = round(FlowCalculator.u);
-                let roundedY = round(Flowcalculator.v);
-                //let roundedMag = round(flowZone.mag);
-                fill(255);
-                ellipse(roundedX, roundedY, 50);
+                
 
 }
