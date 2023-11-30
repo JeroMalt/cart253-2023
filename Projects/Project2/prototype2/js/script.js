@@ -14,8 +14,8 @@
 function preload() {
 
 }
-let gridSize = 24;
-let ignoreTresh = 12;
+let gridSize = 25;
+let ignoreTresh = 26;
 
 let flow;
 let previousPixels;
@@ -25,11 +25,11 @@ let video;
  * Description of setup
 */
 function setup() {
-    createCanvas(640,480);
+    createCanvas(1280,720);
     background(0);
 
     video = createCapture(VIDEO);
-    video.size(640,480);
+    video.size(1280,720);
     video.hide();
     
 
@@ -66,16 +66,16 @@ function draw() {
 
                 //console.log(roundedX)
                 //ellipse(ballx, height/2, 50);
-                // push();
-                // translate(zone.pos.x, zone.pos.y);
-                // rotate(zone.angle);
-                // strokeWeight(2);
-                // stroke(255);
-                // ellipse(0,0, zone.mag);
+                push();
+                translate(zone.pos.x, zone.pos.y);
+                rotate(zone.angle);
+                strokeWeight(2);
+                stroke(255);
+                ellipse(0,0, zone.mag);
                 // line(0,0, zone.mag,0);
                 // line(zone.mag,0, zone.mag-5,-5);
                 // line(zone.mag,0, zone.mag-5,5);
-                // pop();
+                pop();
                 //background(0);
                
 
