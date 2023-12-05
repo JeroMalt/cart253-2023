@@ -1,15 +1,41 @@
 
+
+let img;
+let img2;
+
+
+function preload() {
+img = loadImage('assets/images/soccerBall.png');
+img2 = loadImage('assets/images/field.jpg');
+}
 let video;
 let model;
 let face;
+let paddle;
+let gravityForce = 0.0095;
+let balls = [];
+let numBalls = 1;
+let bounceScore = 0; 
+
 
 function setup() {
     createCanvas(1028,720);
+    img = loadImage('assets/images/soccerBall.png');
 
     video = createCapture(VIDEO);
     video.hide();
 
     loadFaceModel();
+
+    //create the paddle
+    //paddle = new Paddle(300,20);
+//creates the balls
+    for (let i = 0; i < numBalls; i ++){
+        let x = random(0,width);
+        let y = random(-400,-100);
+        let ball = new Ball(x,y);
+        balls.push(ball);
+    }
 
 }
 async function loadFaceModel() {
@@ -17,14 +43,28 @@ async function loadFaceModel() {
 }
 
 function draw() {
+   
     
+    
+    translate(width, 0);
+    //then scale it by -1 in the x-axis
+    //to flip the image
+    scale(-1, 1);
+    image(img2, width/2,height/2,width,height);
+
     if (video.loadedmetadata && model !== undefined) {
         getFace();
     }
 
-    if (face !== undefined) {
+         if (face !== undefined) {
 
-        background(255);
+            
+
+
+          // background(255);
+          imageMode(CENTER);
+          image(img2, width/2,height/2);
+
 
         let bodyx = 0;
         let bodyy = 0;
@@ -40,6 +80,7 @@ function draw() {
         nose =     scalePoint(nose);
         rightEar = scalePoint(rightEar);
         leftEar = scalePoint(leftEar);
+
 
         let faceSize = dist(rightEar.x, rightEar.y,leftEar.x,leftEar.y);
         let eyeSize = dist(rightEye.x, rightEye.y,leftEye.x,leftEye.y);
@@ -80,11 +121,11 @@ function draw() {
         pop();
         
         //nose
-        push();
-        rectMode(CENTER);
-        fill(150,75,100);
-        rect(nose.x, nose.y,25,40);
-        pop(); 
+        // push();
+        // rectMode(CENTER);
+        // fill(150,75,100);
+        // rect(nose.x, nose.y,25,40);
+        // pop(); 
 
         //mouth
         push();
@@ -100,14 +141,36 @@ function draw() {
         rect(nose.x, nose.y,25,40);
         rect(nose.x, nose.y,eyeSize/2.5,eyeSize*0.7);
         pop(); 
+       paddle = new Paddle(faceSize, 25,faceCenterx,faceCentery-(faceSize/1.5));
+        //paddle.move();
+        //paddle.display();
+
+        for (let i =0; i < balls.length; i++) {
+            let ball = balls[i];
+            if (ball.active){
+                ball.gravity(gravityForce);
+                ball.move();
+                ball.bounce(paddle);
+                ball.display();
+                
+                push();
+                translate(width, 0);
+                scale(-1, 1);
+                ball.displayBounce();
+                pop();
+                
+            }
+           
+
+        }
        
-        
-
-
-    }
 
     
+    }
 }
+
+
+
 function scalePoint(pt) {
     let x = map(pt[0], 0, video.width, 0, width);
     let y = map(pt[1], 0, video.height, 0, height);
@@ -128,9 +191,17 @@ async function getFace() {
     }
     
 }
+
+function keyTyped() {
+    if (key === 'r'){
+        let x = random(0,width);
+        let y = random(-400,-100);
+        let ball = new Ball(x,y);
+        balls.push(ball);
+        }
+        //return false;
+}
+
     
-
-
-
 
 

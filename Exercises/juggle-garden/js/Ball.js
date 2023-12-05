@@ -8,7 +8,7 @@ constructor(x,y) {
     this.ax = 0; 
     this.ay = 0;
     this.maxSpeed = 10;
-    this.size = 40;
+    this.size = 250;
     this.active = true;
 }
 

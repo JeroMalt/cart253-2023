@@ -8,8 +8,9 @@ constructor(x,y) {
     this.ax = 0; 
     this.ay = 0;
     this.maxSpeed = 10;
-    this.size = 40;
+    this.size = 100;
     this.active = true;
+    this.bc = 0;
 }
 
 gravity(force) {
@@ -44,16 +45,31 @@ bounce(paddle) {
         
         this.vy = -this.vy;
         this.ay = 0;
+        this.bc = this.bc + 1;
     }
+    
        
 }
-display(){
+
+displayBounce() {
     push();
-    fill(255,50,50);
-    stroke(0);
-    ellipse(this.x,this.y,this.size);
+    fill(255);
+    stroke(20);
+    textSize(100);
+    text(this.bc,100,200);
     pop();
 }
 
 
+
+
+
+display() {
+    image(img, this.x,this.y,this.size,this.size); 
+    // push();
+    // fill(255,50,50);
+    // stroke(0);
+    // ellipse(this.x,this.y,this.size);
+    // pop();
+}
 }
