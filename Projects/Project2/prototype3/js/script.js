@@ -36,7 +36,7 @@ let bounceScore = 0;
 let highScore = 0;
 let state = 'title';
 let synth
-let difficulty = 5;
+let difficulty = 1;
 
 // Setup function to initialize canvas, video, and objects
 function setup() {
