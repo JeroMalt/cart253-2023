@@ -1,6 +1,8 @@
 //HEADER SIMULATOR 
 //by jerome Maltais 
 //fall 2023
+//concordia University 
+//Montreal
 
 //made with the jungle-garden exercise 
 //also using the blazeFace model with help form this tutorial https://www.youtube.com/watch?v=jovusqHNpRo&t=25s 
