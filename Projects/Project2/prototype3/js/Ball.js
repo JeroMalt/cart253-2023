@@ -10,7 +10,9 @@ constructor(x,y) {
     this.maxSpeed = 10;
     this.size = 100;
     this.active = true;
-    this.bc = 0;
+    this.bc = false;
+    this.fail = true;
+
 }
 
 gravity(force) {
@@ -18,6 +20,7 @@ gravity(force) {
 }
 
 move() {
+    this.fail = false;
     this.vx = this.vx + this.ax;
     this.vy = this.vy + this.ay;
     
@@ -29,7 +32,10 @@ move() {
 
     if (this.y - this.size/2 > height) {
         this.active = false;
+        this.fail = true;
     }
+    
+    
     
 }
 
@@ -42,24 +48,48 @@ bounce(paddle) {
         let dx = this.x - paddle.x;
         this.vx = this.vx + map(dx, -paddle.width/2,paddle.width/2,-2,2);
 
-        
+        this.bc = this.bc + 1;
         this.vy = -this.vy;
         this.ay = 0;
-        this.bc = this.bc + 1;
+        this.bc = true;
+        
+        
+        
     }
+    else {
+        this.bc = false;
+    }
+
+    
+    
+    
+   
+
+    
+
     
        
 }
 
-displayBounce() {
-    push();
-    fill(255);
-    stroke(20);
-    textSize(100);
-    text(this.bc,100,200);
-    pop();
-}
-
+// displayBounce() {
+//     push();
+//     fill(255);
+//     stroke(20);
+//     textSize(100);
+//     text(this.bc,100,200);
+//     pop();
+// }
+// displayHighscore() {
+//     if (this.hs < this.bc) {
+//         this.hs = this.bc;
+//     }
+//     push();
+//     fill(255);
+//     stroke(20);
+//     textSize(100);
+//     text(this.hs,800,200);
+//     pop();
+// }
 
 
 

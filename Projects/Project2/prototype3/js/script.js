@@ -16,6 +16,7 @@ let gravityForce = 0.0095;
 let balls = [];
 let numBalls = 1;
 let bounceScore = 0; 
+let highScore = 0;
 
 
 function setup() {
@@ -138,10 +139,10 @@ function draw() {
         push();
         rectMode(CENTER);
         fill(150,75,100);
-        rect(nose.x, nose.y,25,40);
+        //rect(nose.x, nose.y,25,40);
         rect(nose.x, nose.y,eyeSize/2.5,eyeSize*0.7);
         pop(); 
-       paddle = new Paddle(faceSize, 25,faceCenterx,faceCentery-(faceSize/1.5));
+       paddle = new Paddle(faceSize, 0,faceCenterx,faceCentery-(faceSize/1.5));
         //paddle.move();
         //paddle.display();
 
@@ -152,24 +153,49 @@ function draw() {
                 ball.move();
                 ball.bounce(paddle);
                 ball.display();
+                if (ball.y - ball.size/2 > height) {
+                    bounceScore = bounceScore -1;
+
+                }
                 
-                push();
-                translate(width, 0);
-                scale(-1, 1);
-                ball.displayBounce();
-                pop();
+                
+
                 
             }
+            
+           
+            
+            if (ball.bc){
+                bounceScore = bounceScore + 1;
+            }
+            
+            
+            
+            
            
 
         }
-       
+        if (bounceScore > highScore) {
+            highScore = bounceScore;
+        }
+        displayScore();
 
     
     }
 }
 
+function displayScore(){
+    push();
+    translate(width, 0);
+    scale(-1, 1);
+    fill(255);
+    stroke(20);
+    textSize(100);
+    text(bounceScore,100,200);
+    text(highScore,600,200);
+    pop();
 
+}
 
 function scalePoint(pt) {
     let x = map(pt[0], 0, video.width, 0, width);
